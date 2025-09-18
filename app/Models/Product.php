@@ -6,6 +6,7 @@ use Brick\Money\Money;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 
 class Product extends Model
 {
@@ -36,6 +37,7 @@ class Product extends Model
     protected $appends = [
         'price_human',
         'featured_photo_url',
+        'inventory_remaining_human',
     ];
 
     /** @var array<int,string> */
@@ -93,6 +95,21 @@ class Product extends Model
     {
         return Attribute::make(
             get: fn ($value, $attributes) => Money::ofMinor($this->price, 'USD')->formatTo('en_US'),
+        );
+    }
+
+    /**
+     * Convert the inventory remaining count to a human-friendly format.
+     *
+     * @package App\Models\Product
+     * @since 1.0.0
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function inventoryRemainingHuman(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes) => Number::format($this->inventory_remaining),
         );
     }
 
