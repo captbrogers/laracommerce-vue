@@ -18,6 +18,7 @@ class Product extends Model
         'description',
         'price',
         'featured_photo',
+        'inventory_remaining',
     ];
 
     /** @var array<int,string> */

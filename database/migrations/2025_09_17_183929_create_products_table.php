@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->unsignedInteger('price')->default(1);
             $table->string('featured_photo');
+            $table->unsignedInteger('inventory_remaining')->default(0);
             $table->timestamps();
         });
     }

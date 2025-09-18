@@ -21,6 +21,7 @@ class ProductFactory extends Factory
             'description' => fake()->realText(),
             'price' => random_int(1, 99999),
             'featured_photo' => $this->generateRandomNoiseImage(),
+            'inventory_remaining' => random_int(100, 10000),
         ];
     }
 
